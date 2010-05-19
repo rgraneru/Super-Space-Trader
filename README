@@ -1,0 +1,7 @@
+Super Space Trader is going to be a port of Space Trader for the palm pilot from 2002. The point of this project is to teach myself test-driven development in Java and keep my fleeting Java and programming knowledge from completely fading away from memory, due to too much scripting in PHP and Python these past years. 
+
+The main goal is to create an engine and an backend that will not be dependant on how the gui is implemented.
+
+Wish me luck.
+
+Roar (it is actually a common Norwegian name, but you may roar it out if you please)
