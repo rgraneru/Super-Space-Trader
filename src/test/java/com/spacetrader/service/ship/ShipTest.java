@@ -2,6 +2,7 @@ package com.spacetrader.service.ship;
 
 
 import com.spacetrader.service.pilot.Pilot;
+import com.spacetrader.service.shield.ShieldException;
 import com.spacetrader.service.ship.exception.NoMoreRoomException;
 import com.spacetrader.service.ship.exception.NoWeaponsException;
 import com.spacetrader.service.weapon.LaserWeapon;
@@ -48,7 +49,7 @@ public class ShipTest {
 			Assert.assertEquals("expecting an exception when adding a 2nd weapon", true, caughtException);
 	}
 	@Test
-	public void testFireWeapons() throws NoWeaponsException, NoMoreRoomException, ProbabilityOutOfBoundsException{
+	public void testFireWeapons() throws NoWeaponsException, NoMoreRoomException, ProbabilityOutOfBoundsException, ShieldException{
 		boolean caughtException = false;
 		try{
 			ship.fireWeapons(enemyShip);
@@ -112,6 +113,11 @@ public class ShipTest {
 			boolean resultHit = this.ship.hitOrNot(90);
 			System.out.println("hit was "+resultHit);
 		}
+	}
+	
+	public void testGetHitLowerShield(){
+		
+		
 	}
 	
 }

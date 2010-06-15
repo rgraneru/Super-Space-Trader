@@ -4,6 +4,8 @@ abstract public class Weapon {
 	protected WeaponType weaponType;
 	protected int weaponStrength;
 	
-	public abstract int getStrength();
+	public int getStrength(){
+		return this.weaponStrength;
+	}
 	
 }

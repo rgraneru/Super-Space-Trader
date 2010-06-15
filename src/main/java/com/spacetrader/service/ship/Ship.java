@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.spacetrader.service.pilot.Pilot;
+import com.spacetrader.service.shield.Shield;
+import com.spacetrader.service.shield.ShieldException;
 import com.spacetrader.service.ship.exception.NoMoreRoomException;
 import com.spacetrader.service.ship.exception.NoWeaponsException;
 import com.spacetrader.service.weapon.LaserWeapon;
@@ -13,8 +15,7 @@ import org.apache.log4j.Logger;
 public class Ship {
 	//ship values
 	
-	private int shieldStrength; //How powerful the shield is
-	private int shieldRemaining; //How much shield is left
+	private Shield shield;
 	private int hullStrength;
 	private int hullRemaining;
 	private int numberOfWeaponPods; //max number of weapons allowed
@@ -59,8 +60,6 @@ public class Ship {
 	
 	//should be read from a config file
 	private void initializeShip(){
-		setShieldRemaining(100);
-		setShieldStrength(1);
 		setNumberOfWeaponPods(1);
 		setHullStrength(1);
 		setHullRemaining(100);
@@ -92,29 +91,35 @@ public class Ship {
 
 
 
-	protected int getShieldStrength() {
-		return shieldStrength;
+	protected int getShieldStrength() throws ShieldException {
+		return this.shield.getShieldStrength();
+	}
+
+
+//
+//	protected void setShieldStrength(int shieldStrength) {
+//		this.shield.setShieldStrength(shieldStrength);
+//	}
+
+
+
+	protected int getShieldRemaining() throws ShieldException {
+		if (this.shield == null){
+			throw new ShieldException("no shield assigned to ship");
+		}
+		return this.shield.getRemiainingShieldEnergy();
 	}
 
 
 
-	protected void setShieldStrength(int shieldStrength) {
-		this.shieldStrength = shieldStrength;
-	}
+//	protected void setShieldRemaining(int shieldRemaining) {
+//		this.shieldRemaining = shieldRemaining;
+//	}
 
 
-
-	protected int getShieldRemaining() {
-		return shieldRemaining;
-	}
-
-
-
-	protected void setShieldRemaining(int shieldRemaining) {
-		this.shieldRemaining = shieldRemaining;
-	}
-
-
+	
+	
+	
 
 	protected int getHullStrength() {
 		return hullStrength;
@@ -152,7 +157,7 @@ public class Ship {
 
 
 
-	public void fireWeapons(Ship enemyShip) throws NoWeaponsException, ProbabilityOutOfBoundsException{
+	public void fireWeapons(Ship enemyShip) throws NoWeaponsException, ProbabilityOutOfBoundsException, ShieldException{
 		ArrayList<Weapon> weapons = getWeapons();
 		int numOfWeapons = weapons.size();
 		if (numOfWeapons == 0){
@@ -174,8 +179,9 @@ public class Ship {
 	 * @param weapon
 	 * @return true if hit
 	 * @throws ProbabilityOutOfBoundsException 
+	 * @throws ShieldException 
 	 */
-	private boolean shotAtBy(int enemyPilotSkill, Weapon weapon) throws ProbabilityOutOfBoundsException {
+	private boolean shotAtBy(int enemyPilotSkill, Weapon weapon) throws ProbabilityOutOfBoundsException, ShieldException {
 		int myPilotSkill = this.pilot.getSkill();
 		int hitProbability;
 		boolean hit = false;
@@ -214,8 +220,7 @@ public class Ship {
 	}
 
 	private void lowerShield(Weapon weapon) {
-		int weaponStrength = weapon.getStrength();
-		this.shieldRemaining -= weaponStrength;
+		this.shield.getStruckBy(weapon);
 	}
 
 	/**
@@ -247,13 +252,13 @@ public class Ship {
 	protected boolean hitOrNot(int probability){
 		int randomNumber = randomNumberGenerator.nextInt(100);
 
-		System.out.println("got random number "+randomNumber + "and probability was "+probability);
+		System.out.print("hotOrNot got random number "+randomNumber + "and probability was "+probability+". This was a ");
 		if (randomNumber <= probability){
-			//System.out.println("returning true");
+			System.out.print("hit\n");
 			return true;
 		}
 		else{
-			//System.out.println("returning false");
+			System.out.print("miss\n");
 			return false;
 		}
 	}
