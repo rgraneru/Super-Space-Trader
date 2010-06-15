@@ -27,7 +27,7 @@ public class Ship {
 		return weapons;
 	}
 	
-	protected void setWeapons() {
+	protected void initiateWeaponsArray() {
 		weapons = new ArrayList<Weapon>();
 	}
 
@@ -60,12 +60,6 @@ public class Ship {
 	
 	//should be read from a config file
 	private void initializeShip(){
-		setNumberOfWeaponPods(1);
-		setHullStrength(1);
-		setHullRemaining(100);
-		setWeapons(); //setting no weapons
-		pilot = new Pilot();
-		pilot.initialize();
 		randomNumberGenerator = new Random();
 	}
 
@@ -261,6 +255,11 @@ public class Ship {
 			System.out.print("miss\n");
 			return false;
 		}
+	}
+
+	public void addShield(Shield shield) {
+		
+		this.shield = shield;
 	}
 	
 	

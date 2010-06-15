@@ -1,8 +1,12 @@
 package com.spacetrader.service.ship;
 
 
+import java.util.Random;
+
 import com.spacetrader.service.pilot.Pilot;
+import com.spacetrader.service.shield.Shield;
 import com.spacetrader.service.shield.ShieldException;
+import com.spacetrader.service.shield.ShieldType;
 import com.spacetrader.service.ship.exception.NoMoreRoomException;
 import com.spacetrader.service.ship.exception.NoWeaponsException;
 import com.spacetrader.service.weapon.LaserWeapon;
@@ -29,6 +33,23 @@ public class ShipTest {
 	public void setUp() throws Exception {
 		this.ship = new Ship();
 		this.enemyShip = new Ship();
+		initiateMockShip(this.ship);
+		initiateMockShip(this.enemyShip);
+	}
+
+	private void initiateMockShip(Ship mockShip) {
+		mockShip.setNumberOfWeaponPods(1);
+		mockShip.setHullStrength(1);
+		mockShip.setHullRemaining(100);
+		mockShip.initiateWeaponsArray(); //setting no weapons
+		Pilot pilot = new Pilot();
+		pilot.initialize();
+		mockShip.setPilot(pilot);
+		Shield shield = new Shield();
+		shield.setRemiainingShieldEnergy(100);
+		shield.setShieldStrength(1);
+		shield.setShieldType(ShieldType.LIGHT);
+		mockShip.addShield(shield);
 	}
 
 	@After
@@ -120,4 +141,17 @@ public class ShipTest {
 		
 	}
 	
+	@Test
+	public void testAddShield(){
+		Shield shield = null;
+		boolean exceptionCaught = false;
+		try{
+			ship.addShield(shield); //should fail because shield is nill
+		}
+		catch(ShieldException shieldException){
+			exceptionCaught = true;			
+		}
+		Assert.assertTrue("Adding an empty shield should throw a ShieldException" ,exceptionCaught);
+
+	}
 }
