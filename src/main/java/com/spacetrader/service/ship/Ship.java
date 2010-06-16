@@ -187,7 +187,7 @@ public class Ship {
 		hit = hitOrNot(hitProbability);
 		
 		if (hit){
-			if (this.getShieldRemaining() > weapon.getStrength()){
+			if (this.getShieldRemaining() > weapon.getWeaponStrength()){
 				this.lowerShield(weapon);
 			}
 				
@@ -208,7 +208,7 @@ public class Ship {
 	}
 
 	private void lowerHull(Weapon weapon) {
-		int weaponStrength = weapon.getStrength();
+		int weaponStrength = weapon.getWeaponStrength();
 		this.hullRemaining -= weaponStrength;
 		
 	}
@@ -257,10 +257,22 @@ public class Ship {
 		}
 	}
 
-	public void addShield(Shield shield) {
+	public void addShield(Shield shield) throws ShieldException {
+		if (shield == null){
+			throw new ShieldException("Shield is null (not initialized");
+		}
+		if (this.shield != null){
+			throw new ShieldException("This ship already has a shield. It can only have one");
+		}
 		
 		this.shield = shield;
 	}
+	
+	//used by testing
+	Shield getShield(){
+		return this.shield;
+	}
+
 	
 	
 	

@@ -3,9 +3,10 @@ package com.spacetrader.service.shield;
 import com.spacetrader.service.weapon.Weapon;
 
 public class Shield {
+	private final int NULLINT = -1; 
 	ShieldType shieldType;
-	private int shieldStrength;
-	private int remiainingShieldEnergy;
+	private int shieldStrength = NULLINT;
+	private int remiainingShieldEnergy = NULLINT;
 	
 	public ShieldType getShieldType() throws ShieldException {
 		if (shieldType == null){
@@ -17,7 +18,7 @@ public class Shield {
 		this.shieldType = shieldType;
 	}
 	public int getShieldStrength() throws ShieldException {
-		if (shieldStrength == 0){
+		if (shieldStrength == NULLINT){
 			throw new ShieldException("Shield strength is not set");
 		}
 		return shieldStrength;
@@ -29,14 +30,12 @@ public class Shield {
 		this.remiainingShieldEnergy = remiainingShieldEnergy;
 	}
 	public int getRemiainingShieldEnergy() throws ShieldException {
-		if (remiainingShieldEnergy == 0){
-			throw new ShieldException("Shield has no energy");//can a shield have 0 energy?
+		if (remiainingShieldEnergy == NULLINT){
+			throw new ShieldException("Shield has no energy");
 		}
 		return remiainingShieldEnergy;
 	}
 	public void getStruckBy(Weapon weapon) {
-		// TODO Auto-generated method stub
-		
+		//subtract from shieldremaining
 	}
-
 }

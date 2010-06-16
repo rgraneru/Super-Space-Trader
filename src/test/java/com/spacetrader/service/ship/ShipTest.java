@@ -10,6 +10,8 @@ import com.spacetrader.service.shield.ShieldType;
 import com.spacetrader.service.ship.exception.NoMoreRoomException;
 import com.spacetrader.service.ship.exception.NoWeaponsException;
 import com.spacetrader.service.weapon.LaserWeapon;
+import com.spacetrader.service.weapon.Weapon;
+
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -49,7 +51,12 @@ public class ShipTest {
 		shield.setRemiainingShieldEnergy(100);
 		shield.setShieldStrength(1);
 		shield.setShieldType(ShieldType.LIGHT);
-		mockShip.addShield(shield);
+		try{
+			mockShip.addShield(shield);
+		}
+		catch(ShieldException e){
+			System.out.println(e);
+		}
 	}
 
 	@After
@@ -136,22 +143,61 @@ public class ShipTest {
 		}
 	}
 	
+	@Test
 	public void testGetHitLowerShield(){
-		
+		Weapon weapon = new LaserWeapon();
+		weapon.setDefaultValues();
+
+		int shieldRemainingBeforeHit = -1;
+		int shieldRemainingAfterHit = -1;
+		try{
+			shieldRemainingBeforeHit = ship.getShieldRemaining();
+			ship.getShield().getStruckBy(weapon);
+			shieldRemainingAfterHit = ship.getShieldRemaining();
+		}
+		catch(Exception e){
+			System.out.println(e);
+			Assert.assertFalse("Caught unexpected exception", true);
+		}
+	
+		Assert.assertTrue("Shield strenghtRemaining is supposed to be less after a hit", shieldRemainingBeforeHit > shieldRemainingAfterHit);
 		
 	}
 	
 	@Test
 	public void testAddShield(){
 		Shield shield = null;
+		Ship emptyShip = new Ship();
 		boolean exceptionCaught = false;
 		try{
-			ship.addShield(shield); //should fail because shield is nill
+			emptyShip.addShield(shield); //should fail because shield is nill
 		}
 		catch(ShieldException shieldException){
 			exceptionCaught = true;			
 		}
 		Assert.assertTrue("Adding an empty shield should throw a ShieldException" ,exceptionCaught);
 
+		exceptionCaught = false;
+		shield = new Shield();
+		shield.setRemiainingShieldEnergy(100);
+		shield.setShieldStrength(1);
+		shield.setShieldType(ShieldType.LIGHT);
+		
+		try{
+			emptyShip.addShield(shield);
+		}
+		catch(ShieldException e){
+			exceptionCaught = true;
+		}
+		Assert.assertFalse("Should not throw exception when adding non-empty shield to a ship with no shields", exceptionCaught);
+		
+		exceptionCaught = false;
+		try{
+			emptyShip.addShield(shield);
+		}
+		catch(ShieldException e){
+			exceptionCaught = true;
+		}
+		Assert.assertTrue("Should throw shieldexception when trying to add more than one shild to a ship", exceptionCaught);
 	}
 }
