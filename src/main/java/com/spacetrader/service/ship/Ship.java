@@ -8,16 +8,15 @@ import com.spacetrader.service.shield.Shield;
 import com.spacetrader.service.shield.ShieldException;
 import com.spacetrader.service.ship.exception.NoMoreRoomException;
 import com.spacetrader.service.ship.exception.NoWeaponsException;
-import com.spacetrader.service.weapon.LaserWeapon;
 import com.spacetrader.service.weapon.Weapon;
-import org.apache.log4j.Logger;
 
 public class Ship {
+	private final int NULLINT = -1;
 	//ship values
 	
 	private Shield shield;
-	private int hullStrength;
-	private int hullRemaining;
+	private int hullStrength = NULLINT;
+	private int hullRemaining = NULLINT;
 	private int numberOfWeaponPods; //max number of weapons allowed
 	private ArrayList<Weapon> weapons;
 	private Pilot pilot;
@@ -187,23 +186,15 @@ public class Ship {
 		hit = hitOrNot(hitProbability);
 		
 		if (hit){
-			if (this.getShieldRemaining() > weapon.getWeaponStrength()){
-				this.lowerShield(weapon);
-			}
-				
-			else if (this.getShieldRemaining() == 0){
+			if (this.getShieldRemaining() == 0){
 				this.lowerHull(weapon);
 			}
 			else{
-				this.lowerShieldAndHull(weapon);
+				this.lowerShieldAndMaybeHull(weapon);
 			}
 		}
 		
 		return hit;
-		
-	}
-
-	private void lowerShieldAndHull(Weapon weapon) {
 		
 	}
 
@@ -213,8 +204,19 @@ public class Ship {
 		
 	}
 
-	private void lowerShield(Weapon weapon) {
-		this.shield.getStruckBy(weapon);
+	private void lowerShieldAndMaybeHull(Weapon weapon) throws ShieldException {
+		int hullDamage = 0;
+		hullDamage = this.shield.getStruckBy(weapon);
+		if (hullDamage > getHullRemaining()){
+			setHullRemaining(0);//destroyed
+		}
+		else{
+			lowerHullRemaining(hullDamage);
+		}
+	}
+
+	private void lowerHullRemaining(int hullDamage) {
+		setHullRemaining(this.hullRemaining - hullDamage);
 	}
 
 	/**
@@ -269,8 +271,20 @@ public class Ship {
 	}
 	
 	//used by testing
-	Shield getShield(){
+	Shield getShield() throws ShieldException{
+		if (this.shield == null){
+			throw new ShieldException("Shield is null");
+		}
 		return this.shield;
+	}
+	
+	public boolean isDestroyed(){
+		if (getHullRemaining() == 0){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	

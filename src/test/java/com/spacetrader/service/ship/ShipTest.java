@@ -139,7 +139,6 @@ public class ShipTest {
 
 		for (int i=0; i<20;i++){
 			boolean resultHit = this.ship.hitOrNot(90);
-			System.out.println("hit was "+resultHit);
 		}
 	}
 	
@@ -148,6 +147,29 @@ public class ShipTest {
 		Weapon weapon = new LaserWeapon();
 		weapon.setDefaultValues();
 
+		Ship emptyShip = new Ship();
+		boolean caughtException = false;
+		try{
+			emptyShip.getShield().getStruckBy(weapon);	
+		}
+		catch (ShieldException e){
+			System.out.println(e.getMessage());
+			caughtException = true;
+		}
+		Assert.assertTrue("Expected to get a ShieldException stating that the shield is null", caughtException);
+		
+		caughtException = false;
+		Shield uninitializedShield = new Shield();
+		try {
+			emptyShip.addShield(uninitializedShield);
+			emptyShip.getShield().getStruckBy(weapon);
+		} catch (ShieldException e) {
+			System.out.println(e.getMessage());
+			caughtException = true;
+		}
+		Assert.assertTrue("Suppoded to get a ShieldExeption saying that the shield is uninitialized", caughtException);
+		
+		
 		int shieldRemainingBeforeHit = -1;
 		int shieldRemainingAfterHit = -1;
 		try{
@@ -157,11 +179,44 @@ public class ShipTest {
 		}
 		catch(Exception e){
 			System.out.println(e);
-			Assert.assertFalse("Caught unexpected exception", true);
+			Assert.assertFalse("Caught unexpected exception: "+e.getMessage(), true);
 		}
 	
 		Assert.assertTrue("Shield strenghtRemaining is supposed to be less after a hit", shieldRemainingBeforeHit > shieldRemainingAfterHit);
 		
+	}
+	
+	@Test
+	public void testGetHitLowerShieldAndHull(){
+		Weapon weapon = new LaserWeapon();
+		weapon.setDefaultValues();
+		Ship damagedShip = new Ship();
+		Shield damagedShield = new Shield();
+		damagedShield.setRemiainingShieldEnergy(5);
+		damagedShield.setShieldType(ShieldType.LIGHT);
+		damagedShield.setShieldStrength(1);
+		int hullDamage = 0;
+		
+		try {
+			damagedShip.addShield(damagedShield);
+			hullDamage = damagedShip.getShield().getStruckBy(weapon);
+		
+		
+		} catch (ShieldException e) {
+			e.printStackTrace();
+			Assert.assertFalse("unexpected exception: "+e.getMessage(), true);
+		}
+		
+		Assert.assertEquals("Did not get expected hulldamage", 15, hullDamage);
+		
+		hullDamage = 0;
+		try {
+			damagedShip.getShield().setRemiainingShieldEnergy(0);
+			hullDamage = damagedShip.getShield().getStruckBy(weapon);
+		} catch (ShieldException e) {
+			Assert.assertFalse("unexpected exception: "+e.getMessage(), true);
+		}
+		Assert.assertEquals("Did not get expected hulldamage", 20, hullDamage);
 	}
 	
 	@Test
@@ -189,7 +244,7 @@ public class ShipTest {
 		catch(ShieldException e){
 			exceptionCaught = true;
 		}
-		Assert.assertFalse("Should not throw exception when adding non-empty shield to a ship with no shields", exceptionCaught);
+		Assert.assertFalse("Shouuld not throw exception when adding non-empty shield to a ship with no shields", exceptionCaught);
 		
 		exceptionCaught = false;
 		try{
@@ -198,6 +253,20 @@ public class ShipTest {
 		catch(ShieldException e){
 			exceptionCaught = true;
 		}
-		Assert.assertTrue("Should throw shieldexception when trying to add more than one shild to a ship", exceptionCaught);
+		Assert.assertTrue("Should throw shieldexception when trying to add more than one shield to a ship", exceptionCaught);
+	}
+	
+	public void testIsDestroyed(){
+		Weapon weapon = new LaserWeapon();
+		weapon.setDefaultValues();
+		Ship damagedShip = new Ship();
+		Shield damagedShield = new Shield();
+		damagedShield.setRemiainingShieldEnergy(5);
+		damagedShield.setShieldType(ShieldType.LIGHT);
+		damagedShield.setShieldStrength(1);
+		damagedShip.setHullRemaining(5);
+		
+		//fire at ship to destroy it
+		
 	}
 }
