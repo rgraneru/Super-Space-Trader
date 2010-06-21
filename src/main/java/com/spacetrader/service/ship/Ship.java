@@ -186,32 +186,21 @@ public class Ship {
 		hit = hitOrNot(hitProbability);
 		
 		if (hit){
-			if (this.getShieldRemaining() == 0){
-				this.lowerHull(weapon);
-			}
-			else{
-				this.lowerShieldAndMaybeHull(weapon);
-			}
+			this.lowerShieldAndMaybeHull(weapon);
 		}
 		
 		return hit;
 		
 	}
 
-	private void lowerHull(Weapon weapon) {
-		int weaponStrength = weapon.getWeaponStrength();
-		this.hullRemaining -= weaponStrength;
-		
-	}
-
-	private void lowerShieldAndMaybeHull(Weapon weapon) throws ShieldException {
-		int hullDamage = 0;
-		hullDamage = this.shield.getStruckBy(weapon);
-		if (hullDamage > getHullRemaining()){
+	void lowerShieldAndMaybeHull(Weapon weapon) throws ShieldException {
+		int hullDamageTaken = 0;
+		hullDamageTaken = this.shield.getStruckBy(weapon);
+		if (hullDamageTaken > getHullRemaining()){
 			setHullRemaining(0);//destroyed
 		}
 		else{
-			lowerHullRemaining(hullDamage);
+			lowerHullRemaining(hullDamageTaken);
 		}
 	}
 
@@ -225,7 +214,7 @@ public class Ship {
 	 * @return
 	 * @throws ProbabilityOutOfBoundsException
 	 */
-	protected int getHitProbability(int skillDifference) throws ProbabilityOutOfBoundsException{
+	int getHitProbability(int skillDifference) throws ProbabilityOutOfBoundsException{
 		int returnPercent;
 		if (skillDifference >= 4){
 			returnPercent = 90;
@@ -240,12 +229,12 @@ public class Ship {
 		return returnPercent;
 	}
 
-	protected int getSkillDifference(int enemyPilotSkill, int myPilotSkill) {
+	int getSkillDifference(int enemyPilotSkill, int myPilotSkill) {
 		int skillDifference = enemyPilotSkill - myPilotSkill;		
 		return skillDifference;
 	}
 	
-	protected boolean hitOrNot(int probability){
+	boolean hitOrNot(int probability){
 		int randomNumber = randomNumberGenerator.nextInt(100);
 
 		System.out.print("hotOrNot got random number "+randomNumber + "and probability was "+probability+". This was a ");
@@ -278,7 +267,7 @@ public class Ship {
 		return this.shield;
 	}
 	
-	public boolean isDestroyed(){
+	public boolean isDestroyed() throws ShieldException{
 		if (getHullRemaining() == 0){
 			return true;
 		}

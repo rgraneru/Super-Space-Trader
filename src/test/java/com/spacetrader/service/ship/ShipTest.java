@@ -153,7 +153,7 @@ public class ShipTest {
 			emptyShip.getShield().getStruckBy(weapon);	
 		}
 		catch (ShieldException e){
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
 			caughtException = true;
 		}
 		Assert.assertTrue("Expected to get a ShieldException stating that the shield is null", caughtException);
@@ -164,10 +164,10 @@ public class ShipTest {
 			emptyShip.addShield(uninitializedShield);
 			emptyShip.getShield().getStruckBy(weapon);
 		} catch (ShieldException e) {
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
 			caughtException = true;
 		}
-		Assert.assertTrue("Suppoded to get a ShieldExeption saying that the shield is uninitialized", caughtException);
+		Assert.assertTrue("Supposed to get a ShieldExeption saying that the shield is uninitialized", caughtException);
 		
 		
 		int shieldRemainingBeforeHit = -1;
@@ -256,17 +256,34 @@ public class ShipTest {
 		Assert.assertTrue("Should throw shieldexception when trying to add more than one shield to a ship", exceptionCaught);
 	}
 	
+	@Test
 	public void testIsDestroyed(){
 		Weapon weapon = new LaserWeapon();
 		weapon.setDefaultValues();
 		Ship damagedShip = new Ship();
 		Shield damagedShield = new Shield();
-		damagedShield.setRemiainingShieldEnergy(5);
+		damagedShield.setRemiainingShieldEnergy(25);
 		damagedShield.setShieldType(ShieldType.LIGHT);
 		damagedShield.setShieldStrength(1);
 		damagedShip.setHullRemaining(5);
+		try {
+			damagedShip.addShield(damagedShield);
+			damagedShip.lowerShieldAndMaybeHull(weapon);
+			Assert.assertFalse("expected ship not to be destroyed", damagedShip.isDestroyed());
+		} catch (ShieldException e) {
+			e.printStackTrace();
+			Assert.assertFalse("Should not get exception here: "+e.getMessage(), true);
+		}
 		
-		//fire at ship to destroy it
+		
+		try {
+			damagedShip.lowerShieldAndMaybeHull(weapon);
+			Assert.assertTrue("expected ship to be destroyed", damagedShip.isDestroyed());
+		} catch (ShieldException e) {
+			e.printStackTrace();
+			Assert.assertFalse("Should not get exception here: "+e.getMessage(), true);
+		}
+
 		
 	}
 }
