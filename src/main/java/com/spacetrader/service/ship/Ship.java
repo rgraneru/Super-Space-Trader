@@ -3,6 +3,9 @@ package com.spacetrader.service.ship;
 import java.util.ArrayList;
 import java.util.Random;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 import com.spacetrader.service.pilot.Pilot;
 import com.spacetrader.service.shield.Shield;
 import com.spacetrader.service.shield.ShieldException;
@@ -13,7 +16,6 @@ import com.spacetrader.service.weapon.Weapon;
 public class Ship {
 	private final int NULLINT = -1;
 	//ship values
-	
 	private Shield shield;
 	private int hullStrength = NULLINT;
 	private int hullRemaining = NULLINT;
@@ -21,6 +23,7 @@ public class Ship {
 	private ArrayList<Weapon> weapons;
 	private Pilot pilot;
 	private Random randomNumberGenerator;
+	private Logger logger;
 	
 	protected ArrayList<Weapon> getWeapons() {
 		return weapons;
@@ -53,6 +56,8 @@ public class Ship {
 	}
 
 	public Ship() {
+		logger = Logger.getLogger(this.getClass());
+		PropertyConfigurator.configure("log4j.properties");		
 		initializeShip();
 	}
 
@@ -156,13 +161,11 @@ public class Ship {
 		if (numOfWeapons == 0){
 			throw new NoWeaponsException("This ship doesn't have any weapons and cannot fire");
 		}
-		//fire all weapons of the ship
-		
+		//fire all weapons of the ship		
 		Weapon weapon;
-		boolean hit;
 		for (int i=0;i<weapons.size();i++){
 			weapon = weapons.get(i);
-			hit = enemyShip.shotAtBy(this.pilot.getSkill(), weapon);			
+			enemyShip.shotAtBy(this.pilot.getSkill(), weapon);			
 		}						
 	}
 
@@ -194,6 +197,7 @@ public class Ship {
 	}
 
 	void lowerShieldAndMaybeHull(Weapon weapon) throws ShieldException {
+		//System.out.println("resourcebundle"+logger.getResourceBundle().toString());
 		int hullDamageTaken = 0;
 		hullDamageTaken = this.shield.getStruckBy(weapon);
 		if (hullDamageTaken > getHullRemaining()){

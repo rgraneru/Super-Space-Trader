@@ -1,7 +1,13 @@
 package com.spacetrader.service.ship;
 
 
-import java.util.Random;
+import junit.framework.Assert;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import com.spacetrader.service.pilot.Pilot;
 import com.spacetrader.service.shield.Shield;
@@ -11,13 +17,6 @@ import com.spacetrader.service.ship.exception.NoMoreRoomException;
 import com.spacetrader.service.ship.exception.NoWeaponsException;
 import com.spacetrader.service.weapon.LaserWeapon;
 import com.spacetrader.service.weapon.Weapon;
-
-import junit.framework.Assert;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 public class ShipTest {
 	Ship ship;
@@ -285,5 +284,34 @@ public class ShipTest {
 		}
 
 		
+	}
+	
+	@Test
+	public void testSimulatedShipCombat() throws NoWeaponsException, ProbabilityOutOfBoundsException, ShieldException, NoMoreRoomException{
+		boolean shipDestroyed = false;
+		int round = 0;
+		ship.addWeapon(new LaserWeapon());
+		enemyShip.addWeapon(new LaserWeapon());
+		
+		int counter = 0;
+		while(!shipDestroyed && counter < 200){//while not
+			counter++;
+			System.out.println("Round: "+round++);
+			ship.fireWeapons(enemyShip);
+			System.out.println("ship fired his weapons");
+			if (enemyShip.isDestroyed()){
+				System.out.println("enemyship was destroyed");
+				shipDestroyed = true;					
+			}
+			else{
+				enemyShip.fireWeapons(ship);
+				System.out.println("enemyship fired his weapons");
+			}
+			if (ship.isDestroyed()){
+				System.out.println("ship was destroyed");
+				shipDestroyed = true;
+			}
+
+		}
 	}
 }
