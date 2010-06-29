@@ -3,6 +3,8 @@ package com.spacetrader.service.ship;
 
 import junit.framework.Assert;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -10,6 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.spacetrader.service.pilot.Pilot;
+import com.spacetrader.service.pilot.TradeException;
 import com.spacetrader.service.shield.Shield;
 import com.spacetrader.service.shield.ShieldException;
 import com.spacetrader.service.shield.ShieldType;
@@ -21,6 +24,7 @@ import com.spacetrader.service.weapon.Weapon;
 public class ShipTest {
 	Ship ship;
 	Ship enemyShip;
+	private Logger logger;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -32,6 +36,9 @@ public class ShipTest {
 
 	@Before
 	public void setUp() throws Exception {
+		logger = Logger.getLogger(this.getClass());
+		PropertyConfigurator.configure("log4j.properties");		
+
 		this.ship = new Ship();
 		this.enemyShip = new Ship();
 		initiateMockShip(this.ship);
@@ -96,7 +103,7 @@ public class ShipTest {
 	public void testGetPilotSkill(){
 		int expectedStartingSkill = 10;
 		Pilot pilot = ship.getPilot();
-		int pilotSkill = pilot.getSkill();
+		int pilotSkill = pilot.getCombatSkill();
 		Assert.assertEquals("Expected starting pilotskill to be "+expectedStartingSkill, expectedStartingSkill, pilotSkill);
 	}
 
@@ -128,16 +135,16 @@ public class ShipTest {
 	public void testGetHitOrNot(){
 		for (int i=0; i<20;i++){
 			boolean resultHit = this.ship.hitOrNot(50);
-			System.out.println("hit was "+resultHit);
+			logger.debug("hit was "+resultHit);
 		}
 		
 		for (int i=0; i<20;i++){
 			boolean resultHit = this.ship.hitOrNot(10);
-			System.out.println("hit was "+resultHit);
+			logger.debug("hit was "+resultHit);
 		}
 
 		for (int i=0; i<20;i++){
-			boolean resultHit = this.ship.hitOrNot(90);
+			this.ship.hitOrNot(90);
 		}
 	}
 	
@@ -288,30 +295,60 @@ public class ShipTest {
 	
 	@Test
 	public void testSimulatedShipCombat() throws NoWeaponsException, ProbabilityOutOfBoundsException, ShieldException, NoMoreRoomException{
+		logger.info("starting combat simulation");
 		boolean shipDestroyed = false;
 		int round = 0;
+		
+		Pilot worsePilot = new Pilot();
+		
+		worsePilot.setCombatSkill(9);
+		enemyShip.setPilot(worsePilot);
+		
 		ship.addWeapon(new LaserWeapon());
 		enemyShip.addWeapon(new LaserWeapon());
 		
 		int counter = 0;
 		while(!shipDestroyed && counter < 200){//while not
 			counter++;
-			System.out.println("Round: "+round++);
+			logger.info("Round: "+round++);
 			ship.fireWeapons(enemyShip);
-			System.out.println("ship fired his weapons");
 			if (enemyShip.isDestroyed()){
-				System.out.println("enemyship was destroyed");
+				logger.info("enemyship was destroyed");
 				shipDestroyed = true;					
 			}
 			else{
 				enemyShip.fireWeapons(ship);
-				System.out.println("enemyship fired his weapons");
 			}
 			if (ship.isDestroyed()){
-				System.out.println("ship was destroyed");
+				logger.info("ship was destroyed");
 				shipDestroyed = true;
 			}
 
 		}
+	}
+	
+	@Test
+	public void testAddingAndSubtractingCredits(){
+		Pilot poorPilot = new Pilot(0);
+		Assert.assertEquals("expected the pilot to have zero credits", 0, poorPilot.getCredits());
+
+		boolean caughtException = false;
+		try {
+			poorPilot.subTractCredits(1);
+		} catch (TradeException e1) {
+			caughtException = true;
+		}
+		Assert.assertTrue("Expected to catch a pilotExceiption", caughtException);
+		
+		poorPilot.addCredits(30);
+		poorPilot.addCredits(40);
+		try {
+			poorPilot.subTractCredits(15);
+		} catch (TradeException e) {
+			Assert.assertFalse("Should not get exception here: "+e.getMessage(), true);
+		}
+		
+		Assert.assertEquals(55, poorPilot.getCredits());
+		
 	}
 }

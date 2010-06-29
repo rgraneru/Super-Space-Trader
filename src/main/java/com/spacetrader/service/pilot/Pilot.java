@@ -1,21 +1,25 @@
 package com.spacetrader.service.pilot;
 
-public class Pilot {
-	int skill;
-	
-	public Pilot() {
+import com.spacetrader.service.market.Tradeable;
+
+public class Pilot extends Tradeable{
+
+	public Pilot(int startingCredits) {
+		super(startingCredits);
 	}
+
+	private int combatSkill;
 	
 	public void initialize(){
-		setSkill(10);
+		setCombatSkill(10);
 	}
 
-	public int getSkill() {
-		return skill;
+	public int getCombatSkill() {
+		return combatSkill;
 	}
 
-	protected void setSkill(int skill) {
-		this.skill = skill;
+	public void setCombatSkill(int skill) {
+		this.combatSkill = skill;
 	}
 
 	

@@ -11,6 +11,7 @@ import com.spacetrader.service.shield.Shield;
 import com.spacetrader.service.shield.ShieldException;
 import com.spacetrader.service.ship.exception.NoMoreRoomException;
 import com.spacetrader.service.ship.exception.NoWeaponsException;
+import com.spacetrader.service.ship.storagebay.StorageBay;
 import com.spacetrader.service.weapon.Weapon;
 
 public class Ship {
@@ -22,6 +23,7 @@ public class Ship {
 	private int numberOfWeaponPods; //max number of weapons allowed
 	private ArrayList<Weapon> weapons;
 	private Pilot pilot;
+	private StorageBay storageBay;
 	private Random randomNumberGenerator;
 	private Logger logger;
 	
@@ -72,6 +74,7 @@ public class Ship {
 	
 
 	public void addWeapon(Weapon weapon) throws NoMoreRoomException{
+		logger.debug("Adding weapon: "+weapon.getWeaponType() + " to the weaponArray");
 		ArrayList<Weapon> weapons = getWeapons();
 		int numberOfWeapons = weapons.size();
 		int numberOfWeaponPods = getNumberOfWeaponPods();
@@ -156,6 +159,7 @@ public class Ship {
 
 
 	public void fireWeapons(Ship enemyShip) throws NoWeaponsException, ProbabilityOutOfBoundsException, ShieldException{
+		logger.debug("Firing weapons at opponent");
 		ArrayList<Weapon> weapons = getWeapons();
 		int numOfWeapons = weapons.size();
 		if (numOfWeapons == 0){
@@ -165,41 +169,34 @@ public class Ship {
 		Weapon weapon;
 		for (int i=0;i<weapons.size();i++){
 			weapon = weapons.get(i);
-			enemyShip.shotAtBy(this.pilot.getSkill(), weapon);			
+			logger.debug("Firing weapon: "+weapon.getWeaponType());
+			enemyShip.shotAtBy(this.pilot.getCombatSkill(), weapon);			
 		}						
 	}
 
-	/**
-	 * Invoked by the ship being fired at
-	 * @param pilotSkill
-	 * @param weapon
-	 * @return true if hit
-	 * @throws ProbabilityOutOfBoundsException 
-	 * @throws ShieldException 
-	 */
-	private boolean shotAtBy(int enemyPilotSkill, Weapon weapon) throws ProbabilityOutOfBoundsException, ShieldException {
-		int myPilotSkill = this.pilot.getSkill();
+	private void shotAtBy(int attackerPilotSkill, Weapon weapon) throws ProbabilityOutOfBoundsException, ShieldException {
+		int defenderPilotSkill = this.pilot.getCombatSkill();
 		int hitProbability;
 		boolean hit = false;
 		
 		//skilldifference is 10*percent chance of hitting from an average of 50%
-		
-		int skillDifference = getSkillDifference(enemyPilotSkill, myPilotSkill);
+		logger.debug("The defenders pilot skill is "+defenderPilotSkill +". The attackers pilot skill is "+attackerPilotSkill);
+		int skillDifference = getSkillDifference(attackerPilotSkill, defenderPilotSkill);
+		logger.debug("Skilldifference between pilots are "+skillDifference);
 		hitProbability = getHitProbability(skillDifference);
+		logger.debug("Hitting probability is "+hitProbability);
 		hit = hitOrNot(hitProbability);
+		logger.debug("The result of hitOrNot was "+hit);
 		
 		if (hit){
 			this.lowerShieldAndMaybeHull(weapon);
-		}
-		
-		return hit;
-		
+		}		
 	}
 
 	void lowerShieldAndMaybeHull(Weapon weapon) throws ShieldException {
-		//System.out.println("resourcebundle"+logger.getResourceBundle().toString());
 		int hullDamageTaken = 0;
 		hullDamageTaken = this.shield.getStruckBy(weapon);
+		logger.debug("Lowering hulldamage by "+hullDamageTaken);
 		if (hullDamageTaken > getHullRemaining()){
 			setHullRemaining(0);//destroyed
 		}
@@ -241,13 +238,10 @@ public class Ship {
 	boolean hitOrNot(int probability){
 		int randomNumber = randomNumberGenerator.nextInt(100);
 
-		System.out.print("hotOrNot got random number "+randomNumber + "and probability was "+probability+". This was a ");
 		if (randomNumber <= probability){
-			System.out.print("hit\n");
 			return true;
 		}
 		else{
-			System.out.print("miss\n");
 			return false;
 		}
 	}
@@ -259,18 +253,10 @@ public class Ship {
 		if (this.shield != null){
 			throw new ShieldException("This ship already has a shield. It can only have one");
 		}
-		
+		logger.debug("adding shield "+" with remaining energy: "+shield.getRemiainingShieldEnergy());		
 		this.shield = shield;
 	}
-	
-	//used by testing
-	Shield getShield() throws ShieldException{
-		if (this.shield == null){
-			throw new ShieldException("Shield is null");
-		}
-		return this.shield;
-	}
-	
+		
 	public boolean isDestroyed() throws ShieldException{
 		if (getHullRemaining() == 0){
 			return true;
@@ -280,7 +266,19 @@ public class Ship {
 		}
 	}
 
-	
-	
-	
+	//used by testing
+	Shield getShield() throws ShieldException{
+		if (this.shield == null){
+			throw new ShieldException("Shield is null");
+		}
+		return this.shield;
+	}
+
+	public void setStorageBay(StorageBay storageBay) {
+		this.storageBay = storageBay;
+	}
+
+	public StorageBay getStorageBay() {
+		return storageBay;
+	}	
 }

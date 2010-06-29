@@ -1,5 +1,8 @@
 package com.spacetrader.service.shield;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 import com.spacetrader.service.weapon.Weapon;
 import com.spacetrader.service.weapon.WeaponType;
 
@@ -8,6 +11,12 @@ public class Shield {
 	ShieldType shieldType;
 	private int shieldStrength = NULLINT;
 	private int remiainingShieldEnergy = NULLINT;
+	private Logger logger;
+	
+	public Shield(){
+		logger = Logger.getLogger(this.getClass());
+		PropertyConfigurator.configure("log4j.properties");		
+	}
 	
 	public ShieldType getShieldType() throws ShieldException {
 		if (shieldType == null){
@@ -39,21 +48,17 @@ public class Shield {
 	public int getStruckBy(Weapon weapon) throws ShieldException {
 		int weaponStrength = weapon.getWeaponStrength();
 		int damageToHull = 0;
-//		System.out.println("weaponStrength: "+weaponStrength);
-//		System.out.println("remainingShieldEnergy: "+this.remiainingShieldEnergy);
+		logger.debug("Shield getting struck by weapon with strength "+weaponStrength+" and remaining shield energy is "+getRemiainingShieldEnergy());
 				
-		if (this.remiainingShieldEnergy == NULLINT){
-//			System.out.println("not set remainingshield");
+		if (getRemiainingShieldEnergy() == NULLINT){
 			throw new ShieldException("cannot shoot at an uninitialized shield");
 		}
-		else if (this.remiainingShieldEnergy > weaponStrength){
-//			System.out.println("draing a shield with energy "+this.remiainingShieldEnergy+" bringing it down with "+weaponStrength);
-			this.remiainingShieldEnergy -= weaponStrength;
+		else if (getRemiainingShieldEnergy() > weaponStrength){
+			setRemiainingShieldEnergy(getRemiainingShieldEnergy() - weaponStrength);
 		}
 		else{//hit will drain shields completely, and surplus damage might get through to the hull.
-//			System.out.println("Remaining shield energy of "+this.remiainingShieldEnergy+" is less than "+weaponStrength+" draining the rest of the shield and returning hulldamage");
-			damageToHull = weaponStrength - this.remiainingShieldEnergy;
-			this.remiainingShieldEnergy = 0;
+			damageToHull = weaponStrength - getRemiainingShieldEnergy();
+			setRemiainingShieldEnergy(0);
 		}
 		
 		return damageToHull;
