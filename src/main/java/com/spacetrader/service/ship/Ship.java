@@ -14,7 +14,7 @@ import com.spacetrader.service.ship.exception.NoWeaponsException;
 import com.spacetrader.service.ship.storagebay.StorageBay;
 import com.spacetrader.service.weapon.Weapon;
 
-public class Ship {
+public abstract class Ship {
 	private final int NULLINT = -1;
 	//ship values
 	private Shield shield;
@@ -26,52 +26,47 @@ public class Ship {
 	private StorageBay storageBay;
 	private Random randomNumberGenerator;
 	private Logger logger;
+
+	abstract protected void initialize();
 	
-	protected ArrayList<Weapon> getWeapons() {
+	public ArrayList<Weapon> getWeapons() {
 		return weapons;
 	}
 	
-	protected void initiateWeaponsArray() {
+	public void initiateWeaponsArray() {
 		weapons = new ArrayList<Weapon>();
 	}
 
-	protected int getCargoSpace() {
-		return cargoSpace;
-	}
-
-
-
-	protected void setCargoSpace(int cargoSpace) {
-		this.cargoSpace = cargoSpace;
-	}
-
-
-
-	private int cargoSpace; //max cargospace
+//	protected int getCargoSpace() {
+//		return cargoSpace;
+//	}
+//
+//
+//
+//	protected void setCargoSpace(int cargoSpace) {
+//		this.cargoSpace = cargoSpace;
+//	}
 	
-	protected Pilot getPilot() {
+	public Pilot getPilot() {
 		return pilot;
 	}
 
-	protected void setPilot(Pilot pilot) {
+	public void setPilot(Pilot pilot) {
 		this.pilot = pilot;
 	}
 
 	public Ship() {
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("log4j.properties");		
-		initializeShip();
+		initializeRandomNumberGenerator();
+		weapons = new ArrayList<Weapon>();
 	}
 
 	
 	//should be read from a config file
-	private void initializeShip(){
+	private void initializeRandomNumberGenerator(){
 		randomNumberGenerator = new Random();
 	}
-
-
-	
-	
 
 	public void addWeapon(Weapon weapon) throws NoMoreRoomException{
 		logger.debug("Adding weapon: "+weapon.getWeaponType() + " to the weaponArray");

@@ -64,4 +64,10 @@ public class Shield {
 		return damageToHull;
 		
 	}
+
+    public void initializeWithTestValues() {
+        this.setRemiainingShieldEnergy(100);
+        this.setShieldStrength('');
+        this.setShieldType(shieldType.LIGHT);
+    }
 }

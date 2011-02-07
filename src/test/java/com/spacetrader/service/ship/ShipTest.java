@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.spacetrader.service.market.Market;
 import com.spacetrader.service.pilot.Pilot;
 import com.spacetrader.service.pilot.TradeException;
 import com.spacetrader.service.shield.Shield;
@@ -18,12 +19,13 @@ import com.spacetrader.service.shield.ShieldException;
 import com.spacetrader.service.shield.ShieldType;
 import com.spacetrader.service.ship.exception.NoMoreRoomException;
 import com.spacetrader.service.ship.exception.NoWeaponsException;
+import com.spacetrader.service.ship.storagebay.StorageBay;
 import com.spacetrader.service.weapon.LaserWeapon;
 import com.spacetrader.service.weapon.Weapon;
 
 public class ShipTest {
-	Ship ship;
-	Ship enemyShip;
+	Ship hawkShip;
+	Ship sparrowShip;
 	private Logger logger;
 	
 	@BeforeClass
@@ -39,18 +41,14 @@ public class ShipTest {
 		logger = Logger.getLogger(this.getClass());
 		PropertyConfigurator.configure("log4j.properties");		
 
-		this.ship = new Ship();
-		this.enemyShip = new Ship();
-		initiateMockShip(this.ship);
-		initiateMockShip(this.enemyShip);
+		this.hawkShip = new Hawk();
+		this.sparrowShip = new Sparrow();
+		initiateMockShip(this.hawkShip);
+		initiateMockShip(this.sparrowShip);
 	}
 
 	private void initiateMockShip(Ship mockShip) {
-		mockShip.setNumberOfWeaponPods(1);
-		mockShip.setHullStrength(1);
-		mockShip.setHullRemaining(100);
-		mockShip.initiateWeaponsArray(); //setting no weapons
-		Pilot pilot = new Pilot();
+		Pilot pilot = new Pilot(0);
 		pilot.initialize();
 		mockShip.setPilot(pilot);
 		Shield shield = new Shield();
@@ -71,11 +69,11 @@ public class ShipTest {
 	
 	@Test
 	public void testAddWeapon() throws NoMoreRoomException{
-			ship.addWeapon(new LaserWeapon());
+			sparrowShip.addWeapon(new LaserWeapon());
 		
 			boolean caughtException = false;
 			try{
-				ship.addWeapon(new LaserWeapon());
+				sparrowShip.addWeapon(new LaserWeapon());
 			}
 			catch(NoMoreRoomException e){
 				caughtException = true;
@@ -86,65 +84,65 @@ public class ShipTest {
 	public void testFireWeapons() throws NoWeaponsException, NoMoreRoomException, ProbabilityOutOfBoundsException, ShieldException{
 		boolean caughtException = false;
 		try{
-			ship.fireWeapons(enemyShip);
+			hawkShip.fireWeapons(sparrowShip);
 		}
 		catch(NoWeaponsException e){
 			caughtException = true;
 		}
 		Assert.assertTrue("expected the first weaponadd to throw NoWeaponsException", caughtException);
 		
-		ship.addWeapon(new LaserWeapon());
+		hawkShip.addWeapon(new LaserWeapon());
 		
-		ship.fireWeapons(enemyShip);
+		hawkShip.fireWeapons(sparrowShip);
 				
 	}
 	
 	@Test
 	public void testGetPilotSkill(){
 		int expectedStartingSkill = 10;
-		Pilot pilot = ship.getPilot();
+		Pilot pilot = hawkShip.getPilot();
 		int pilotSkill = pilot.getCombatSkill();
 		Assert.assertEquals("Expected starting pilotskill to be "+expectedStartingSkill, expectedStartingSkill, pilotSkill);
 	}
 
 	@Test
 	public void testGetHitProbability() throws ProbabilityOutOfBoundsException{
-		int skillDiff10min10 = this.ship.getSkillDifference(10, 10);
+		int skillDiff10min10 = this.hawkShip.getSkillDifference(10, 10);
 		Assert.assertEquals(0, skillDiff10min10);
-		int hit50 = this.ship.getHitProbability(skillDiff10min10);
+		int hit50 = this.hawkShip.getHitProbability(skillDiff10min10);
 		Assert.assertEquals(50, hit50);
 
-		int skillDiff10min6 = this.ship.getSkillDifference(10, 6);
+		int skillDiff10min6 = this.hawkShip.getSkillDifference(10, 6);
 		Assert.assertEquals(4, skillDiff10min6);	
-		int hit90 = this.ship.getHitProbability(skillDiff10min6);
+		int hit90 = this.hawkShip.getHitProbability(skillDiff10min6);
 		Assert.assertEquals(90, hit90);
 
-		int skillDiff7min10 = this.ship.getSkillDifference(7, 10);
+		int skillDiff7min10 = this.hawkShip.getSkillDifference(7, 10);
 		Assert.assertEquals(-3, skillDiff7min10);
-		int hit20 = this.ship.getHitProbability(skillDiff7min10);
+		int hit20 = this.hawkShip.getHitProbability(skillDiff7min10);
 		Assert.assertEquals(20, hit20);
 		
-		int hit10rounded = this.ship.getHitProbability(-8);
+		int hit10rounded = this.hawkShip.getHitProbability(-8);
 		Assert.assertEquals(10, hit10rounded);
 		
-		int hit90rounded = this.ship.getHitProbability(9);
+		int hit90rounded = this.hawkShip.getHitProbability(9);
 		Assert.assertEquals(90, hit90rounded);
 	}
 	
 	//@Test
 	public void testGetHitOrNot(){
 		for (int i=0; i<20;i++){
-			boolean resultHit = this.ship.hitOrNot(50);
+			boolean resultHit = this.hawkShip.hitOrNot(50);
 			logger.debug("hit was "+resultHit);
 		}
 		
 		for (int i=0; i<20;i++){
-			boolean resultHit = this.ship.hitOrNot(10);
+			boolean resultHit = this.hawkShip.hitOrNot(10);
 			logger.debug("hit was "+resultHit);
 		}
 
 		for (int i=0; i<20;i++){
-			this.ship.hitOrNot(90);
+			this.hawkShip.hitOrNot(90);
 		}
 	}
 	
@@ -153,7 +151,7 @@ public class ShipTest {
 		Weapon weapon = new LaserWeapon();
 		weapon.setDefaultValues();
 
-		Ship emptyShip = new Ship();
+		Ship emptyShip = new Sparrow();
 		boolean caughtException = false;
 		try{
 			emptyShip.getShield().getStruckBy(weapon);	
@@ -179,9 +177,9 @@ public class ShipTest {
 		int shieldRemainingBeforeHit = -1;
 		int shieldRemainingAfterHit = -1;
 		try{
-			shieldRemainingBeforeHit = ship.getShieldRemaining();
-			ship.getShield().getStruckBy(weapon);
-			shieldRemainingAfterHit = ship.getShieldRemaining();
+			shieldRemainingBeforeHit = hawkShip.getShieldRemaining();
+			hawkShip.getShield().getStruckBy(weapon);
+			shieldRemainingAfterHit = hawkShip.getShieldRemaining();
 		}
 		catch(Exception e){
 			System.out.println(e);
@@ -196,7 +194,7 @@ public class ShipTest {
 	public void testGetHitLowerShieldAndHull(){
 		Weapon weapon = new LaserWeapon();
 		weapon.setDefaultValues();
-		Ship damagedShip = new Ship();
+		Ship damagedShip = new Hawk();
 		Shield damagedShield = new Shield();
 		damagedShield.setRemiainingShieldEnergy(5);
 		damagedShield.setShieldType(ShieldType.LIGHT);
@@ -228,7 +226,7 @@ public class ShipTest {
 	@Test
 	public void testAddShield(){
 		Shield shield = null;
-		Ship emptyShip = new Ship();
+		Ship emptyShip = new Sparrow();
 		boolean exceptionCaught = false;
 		try{
 			emptyShip.addShield(shield); //should fail because shield is nill
@@ -261,12 +259,18 @@ public class ShipTest {
 		}
 		Assert.assertTrue("Should throw shieldexception when trying to add more than one shield to a ship", exceptionCaught);
 	}
+
+        public void testAddDefaultShield(){
+        Shield shield = new Shield();
+        shield.initializeWithTestValues();
+
+        }
 	
 	@Test
 	public void testIsDestroyed(){
 		Weapon weapon = new LaserWeapon();
 		weapon.setDefaultValues();
-		Ship damagedShip = new Ship();
+		Ship damagedShip = new Sparrow();
 		Shield damagedShield = new Shield();
 		damagedShield.setRemiainingShieldEnergy(25);
 		damagedShield.setShieldType(ShieldType.LIGHT);
@@ -299,28 +303,27 @@ public class ShipTest {
 		boolean shipDestroyed = false;
 		int round = 0;
 		
-		Pilot worsePilot = new Pilot();
-		
+		//The best pilot will be riding in the worst ship
+		Pilot worsePilot = new Pilot(0);//starting credits		
 		worsePilot.setCombatSkill(9);
-		enemyShip.setPilot(worsePilot);
-		
-		ship.addWeapon(new LaserWeapon());
-		enemyShip.addWeapon(new LaserWeapon());
+		hawkShip.setPilot(worsePilot);
+		hawkShip.addWeapon(new LaserWeapon());
+		sparrowShip.addWeapon(new LaserWeapon());
 		
 		int counter = 0;
 		while(!shipDestroyed && counter < 200){//while not
 			counter++;
 			logger.info("Round: "+round++);
-			ship.fireWeapons(enemyShip);
-			if (enemyShip.isDestroyed()){
-				logger.info("enemyship was destroyed");
+			hawkShip.fireWeapons(sparrowShip);
+			if (sparrowShip.isDestroyed()){
+				logger.info("sparrowShip was destroyed");
 				shipDestroyed = true;					
 			}
 			else{
-				enemyShip.fireWeapons(ship);
+				sparrowShip.fireWeapons(hawkShip);
 			}
-			if (ship.isDestroyed()){
-				logger.info("ship was destroyed");
+			if (hawkShip.isDestroyed()){
+				logger.info("hawkShip was destroyed");
 				shipDestroyed = true;
 			}
 
@@ -330,7 +333,8 @@ public class ShipTest {
 	@Test
 	public void testAddingAndSubtractingCredits(){
 		Pilot poorPilot = new Pilot(0);
-		Assert.assertEquals("expected the pilot to have zero credits", 0, poorPilot.getCredits());
+
+                Assert.assertEquals("expected the pilot to have zero credits", 0, poorPilot.getCredits());
 
 		boolean caughtException = false;
 		try {
@@ -351,4 +355,16 @@ public class ShipTest {
 		Assert.assertEquals(55, poorPilot.getCredits());
 		
 	}
+	
+//	@Test
+//	public void testBuyAndSellFromMarket(){
+//		int cargoSpace = hawkShip.getCargoSpace();
+//		Assert.assertTrue("expected cargoSpace to be bigger than 0", cargoSpace>0);
+//		Market market = new Market(1000);
+//
+//		//Add goods(tradeable) to market
+//
+//
+//	}
 }
+
