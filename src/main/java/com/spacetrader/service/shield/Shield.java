@@ -67,7 +67,7 @@ public class Shield {
 
     public void initializeWithTestValues() {
         this.setRemiainingShieldEnergy(100);
-        this.setShieldStrength('');
+        this.setShieldStrength(1);
         this.setShieldType(shieldType.LIGHT);
     }
 }

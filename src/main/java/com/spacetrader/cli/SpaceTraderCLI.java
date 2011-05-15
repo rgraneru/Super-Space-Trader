@@ -31,7 +31,7 @@ public class SpaceTraderCLI {
     Pilot pilot;
 
 
-    public SpaceTraderCLI() throws NoMoreRoomException {
+    public SpaceTraderCLI() throws NoMoreRoomException, ShieldException {
         ship = new Hawk();
         pilot = new Pilot(100);
         pilot.initialize();
@@ -106,7 +106,11 @@ public class SpaceTraderCLI {
         enemyShip = new Sparrow();
         Pilot enemyPilot = new Pilot(50);
         enemyShip.setPilot(enemyPilot);
-        enemyShip.addShield(new Shield());
+        
+        Shield shield = new Shield();
+        shield.initializeWithTestValues();
+       
+        enemyShip.addShield(shield);
     }
 
 
