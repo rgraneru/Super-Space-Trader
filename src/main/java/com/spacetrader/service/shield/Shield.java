@@ -1,7 +1,7 @@
 package com.spacetrader.service.shield;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+//import org.apache.log4j.Logger;
+//import org.apache.log4j.PropertyConfigurator;
 
 import com.spacetrader.service.weapon.Weapon;
 import com.spacetrader.service.weapon.WeaponType;
@@ -11,11 +11,11 @@ public class Shield {
 	ShieldType shieldType;
 	private int shieldStrength = NULLINT;
 	private int remiainingShieldEnergy = NULLINT;
-	private Logger logger;
+//	private Logger logger;
 	
 	public Shield(){
-		logger = Logger.getLogger(this.getClass());
-		PropertyConfigurator.configure("log4j.properties");		
+//		logger = Logger.getLogger(this.getClass());
+//		PropertyConfigurator.configure("log4j.properties");		
 	}
 	
 	public ShieldType getShieldType() throws ShieldException {
@@ -48,7 +48,7 @@ public class Shield {
 	public int getStruckBy(Weapon weapon) throws ShieldException {
 		int weaponStrength = weapon.getWeaponStrength();
 		int damageToHull = 0;
-		logger.debug("Shield getting struck by weapon with strength "+weaponStrength+" and remaining shield energy is "+getRemiainingShieldEnergy());
+//		logger.debug("Shield getting struck by weapon with strength "+weaponStrength+" and remaining shield energy is "+getRemiainingShieldEnergy());
 				
 		if (getRemiainingShieldEnergy() == NULLINT){
 			throw new ShieldException("cannot shoot at an uninitialized shield");

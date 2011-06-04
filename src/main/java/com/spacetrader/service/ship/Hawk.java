@@ -5,6 +5,7 @@ import com.spacetrader.service.ship.storagebay.StorageBay;
 public class Hawk extends Ship {
 	private int sizeOfCargoSpace = 30;
 	private int numberOfWeaponPods = 3;
+	private int hullStrength = 5;
 	
 	public Hawk() {
 		super();

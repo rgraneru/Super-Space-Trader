@@ -3,8 +3,8 @@ package com.spacetrader.service.ship;
 import java.util.ArrayList;
 import java.util.Random;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+//import org.apache.log4j.Logger;
+//import org.apache.log4j.PropertyConfigurator;
 
 import com.spacetrader.service.pilot.Pilot;
 import com.spacetrader.service.shield.Shield;
@@ -18,14 +18,14 @@ public abstract class Ship {
 	private final int NULLINT = -1;
 	//ship values
 	private Shield shield;
-	private int hullStrength = NULLINT;
+	private HullStrengthType hullStrength = null;
 	private int hullRemaining = NULLINT;
 	private int numberOfWeaponPods; //max number of weapons allowed
 	private ArrayList<Weapon> weapons;
 	private Pilot pilot;
 	private StorageBay storageBay;
 	private Random randomNumberGenerator;
-	private Logger logger;
+//	private Logger logger;
 
 	abstract protected void initialize();
 	
@@ -56,8 +56,8 @@ public abstract class Ship {
 	}
 
 	public Ship() {
-		logger = Logger.getLogger(this.getClass());
-		PropertyConfigurator.configure("log4j.properties");		
+//		logger = Logger.getLogger(this.getClass());
+//		PropertyConfigurator.configure("log4j.properties");		
 		initializeRandomNumberGenerator();
 		weapons = new ArrayList<Weapon>();
 	}
@@ -69,7 +69,7 @@ public abstract class Ship {
 	}
 
 	public void addWeapon(Weapon weapon) throws NoMoreRoomException{
-		logger.debug("Adding weapon: "+weapon.getWeaponType() + " to the weaponArray");
+//		logger.debug("Adding weapon: "+weapon.getWeaponType() + " to the weaponArray");
 		ArrayList<Weapon> weapons = getWeapons();
 		int numberOfWeapons = weapons.size();
 		int numberOfWeaponPods = getNumberOfWeaponPods();
@@ -123,7 +123,7 @@ public abstract class Ship {
 
 
 
-	protected void setHullStrength(int hullStrength) {
+	protected void setHullStrength(HullStrengthType hullStrength) {
 		this.hullStrength = hullStrength;
 	}
 
@@ -154,7 +154,7 @@ public abstract class Ship {
 
 
 	public void fireWeapons(Ship enemyShip) throws NoWeaponsException, ProbabilityOutOfBoundsException, ShieldException{
-		logger.debug("Firing weapons at opponent");
+//		logger.debug("Firing weapons at opponent");
 		ArrayList<Weapon> weapons = getWeapons();
 		int numOfWeapons = weapons.size();
 		if (numOfWeapons == 0){
@@ -164,7 +164,7 @@ public abstract class Ship {
 		Weapon weapon;
 		for (int i=0;i<weapons.size();i++){
 			weapon = weapons.get(i);
-			logger.debug("Firing weapon: "+weapon.getWeaponType());
+//			logger.debug("Firing weapon: "+weapon.getWeaponType());
 			enemyShip.shotAtBy(this.pilot.getCombatSkill(), weapon);			
 		}						
 	}
@@ -175,13 +175,13 @@ public abstract class Ship {
 		boolean hit = false;
 		
 		//skilldifference is 10*percent chance of hitting from an average of 50%
-		logger.debug("The defenders pilot skill is "+defenderPilotSkill +". The attackers pilot skill is "+attackerPilotSkill);
+//		logger.debug("The defenders pilot skill is "+defenderPilotSkill +". The attackers pilot skill is "+attackerPilotSkill);
 		int skillDifference = getSkillDifference(attackerPilotSkill, defenderPilotSkill);
-		logger.debug("Skilldifference between pilots are "+skillDifference);
+//		logger.debug("Skilldifference between pilots are "+skillDifference);
 		hitProbability = getHitProbability(skillDifference);
-		logger.debug("Hitting probability is "+hitProbability);
+//		logger.debug("Hitting probability is "+hitProbability);
 		hit = hitOrNot(hitProbability);
-		logger.debug("The result of hitOrNot was "+hit);
+//		logger.debug("The result of hitOrNot was "+hit);
 		
 		if (hit){
 			this.lowerShieldAndMaybeHull(weapon);
@@ -191,7 +191,7 @@ public abstract class Ship {
 	void lowerShieldAndMaybeHull(Weapon weapon) throws ShieldException {
 		int hullDamageTaken = 0;
 		hullDamageTaken = this.shield.getStruckBy(weapon);
-		logger.debug("Lowering hulldamage by "+hullDamageTaken);
+//		logger.debug("Lowering hulldamage by "+hullDamageTaken);
 		if (hullDamageTaken > getHullRemaining()){
 			setHullRemaining(0);//destroyed
 		}
@@ -248,7 +248,7 @@ public abstract class Ship {
 		if (this.shield != null){
 			throw new ShieldException("This ship already has a shield. It can only have one");
 		}
-		logger.debug("adding shield "+" with remaining energy: "+shield.getRemiainingShieldEnergy());		
+//		logger.debug("adding shield "+" with remaining energy: "+shield.getRemiainingShieldEnergy());		
 		this.shield = shield;
 	}
 		

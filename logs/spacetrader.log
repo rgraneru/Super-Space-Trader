@@ -1,0 +1,284 @@
+2011-06-02/18:58:24.113/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.120/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.120/CEST [main] DEBUG Adding weapon: LASER to the weaponArray
+2011-06-02/18:58:24.121/CEST [main] DEBUG Adding weapon: LASER to the weaponArray
+2011-06-02/18:58:24.132/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.134/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.135/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.135/CEST [main] DEBUG Adding weapon: LASER to the weaponArray
+2011-06-02/18:58:24.135/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.135/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.135/CEST [main] DEBUG The defenders pilot skill is 10. The attackers pilot skill is 10
+2011-06-02/18:58:24.135/CEST [main] DEBUG Skilldifference between pilots are 0
+2011-06-02/18:58:24.135/CEST [main] DEBUG Hitting probability is 50
+2011-06-02/18:58:24.135/CEST [main] DEBUG The result of hitOrNot was false
+2011-06-02/18:58:24.200/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.212/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.221/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.224/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.231/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.234/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.238/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 100
+2011-06-02/18:58:24.245/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.248/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.252/CEST [main] DEBUG adding shield  with remaining energy: 5
+2011-06-02/18:58:24.252/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 5
+2011-06-02/18:58:24.252/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 0
+2011-06-02/18:58:24.259/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.261/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.265/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.272/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.274/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.278/CEST [main] DEBUG adding shield  with remaining energy: 25
+2011-06-02/18:58:24.278/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 25
+2011-06-02/18:58:24.278/CEST [main] DEBUG Lowering hulldamage by 0
+2011-06-02/18:58:24.278/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 5
+2011-06-02/18:58:24.279/CEST [main] DEBUG Lowering hulldamage by 15
+2011-06-02/18:58:24.285/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.288/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.288/CEST [main] INFO  starting combat simulation
+2011-06-02/18:58:24.288/CEST [main] DEBUG Adding weapon: LASER to the weaponArray
+2011-06-02/18:58:24.288/CEST [main] DEBUG Adding weapon: LASER to the weaponArray
+2011-06-02/18:58:24.288/CEST [main] INFO  Round: 0
+2011-06-02/18:58:24.288/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.289/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.289/CEST [main] DEBUG The defenders pilot skill is 10. The attackers pilot skill is 9
+2011-06-02/18:58:24.289/CEST [main] DEBUG Skilldifference between pilots are -1
+2011-06-02/18:58:24.289/CEST [main] DEBUG Hitting probability is 40
+2011-06-02/18:58:24.289/CEST [main] DEBUG The result of hitOrNot was true
+2011-06-02/18:58:24.289/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 100
+2011-06-02/18:58:24.289/CEST [main] DEBUG Lowering hulldamage by 0
+2011-06-02/18:58:24.289/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.289/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.289/CEST [main] DEBUG The defenders pilot skill is 9. The attackers pilot skill is 10
+2011-06-02/18:58:24.289/CEST [main] DEBUG Skilldifference between pilots are 1
+2011-06-02/18:58:24.289/CEST [main] DEBUG Hitting probability is 60
+2011-06-02/18:58:24.290/CEST [main] DEBUG The result of hitOrNot was true
+2011-06-02/18:58:24.290/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 100
+2011-06-02/18:58:24.290/CEST [main] DEBUG Lowering hulldamage by 0
+2011-06-02/18:58:24.290/CEST [main] INFO  Round: 1
+2011-06-02/18:58:24.290/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.290/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.290/CEST [main] DEBUG The defenders pilot skill is 10. The attackers pilot skill is 9
+2011-06-02/18:58:24.290/CEST [main] DEBUG Skilldifference between pilots are -1
+2011-06-02/18:58:24.290/CEST [main] DEBUG Hitting probability is 40
+2011-06-02/18:58:24.290/CEST [main] DEBUG The result of hitOrNot was true
+2011-06-02/18:58:24.290/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 80
+2011-06-02/18:58:24.290/CEST [main] DEBUG Lowering hulldamage by 0
+2011-06-02/18:58:24.290/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.291/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.291/CEST [main] DEBUG The defenders pilot skill is 9. The attackers pilot skill is 10
+2011-06-02/18:58:24.291/CEST [main] DEBUG Skilldifference between pilots are 1
+2011-06-02/18:58:24.291/CEST [main] DEBUG Hitting probability is 60
+2011-06-02/18:58:24.291/CEST [main] DEBUG The result of hitOrNot was false
+2011-06-02/18:58:24.291/CEST [main] INFO  Round: 2
+2011-06-02/18:58:24.291/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.291/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.291/CEST [main] DEBUG The defenders pilot skill is 10. The attackers pilot skill is 9
+2011-06-02/18:58:24.291/CEST [main] DEBUG Skilldifference between pilots are -1
+2011-06-02/18:58:24.291/CEST [main] DEBUG Hitting probability is 40
+2011-06-02/18:58:24.291/CEST [main] DEBUG The result of hitOrNot was false
+2011-06-02/18:58:24.291/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.292/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.292/CEST [main] DEBUG The defenders pilot skill is 9. The attackers pilot skill is 10
+2011-06-02/18:58:24.292/CEST [main] DEBUG Skilldifference between pilots are 1
+2011-06-02/18:58:24.292/CEST [main] DEBUG Hitting probability is 60
+2011-06-02/18:58:24.292/CEST [main] DEBUG The result of hitOrNot was true
+2011-06-02/18:58:24.292/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 80
+2011-06-02/18:58:24.292/CEST [main] DEBUG Lowering hulldamage by 0
+2011-06-02/18:58:24.292/CEST [main] INFO  Round: 3
+2011-06-02/18:58:24.292/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.292/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.292/CEST [main] DEBUG The defenders pilot skill is 10. The attackers pilot skill is 9
+2011-06-02/18:58:24.292/CEST [main] DEBUG Skilldifference between pilots are -1
+2011-06-02/18:58:24.292/CEST [main] DEBUG Hitting probability is 40
+2011-06-02/18:58:24.292/CEST [main] DEBUG The result of hitOrNot was false
+2011-06-02/18:58:24.293/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.293/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.293/CEST [main] DEBUG The defenders pilot skill is 9. The attackers pilot skill is 10
+2011-06-02/18:58:24.293/CEST [main] DEBUG Skilldifference between pilots are 1
+2011-06-02/18:58:24.293/CEST [main] DEBUG Hitting probability is 60
+2011-06-02/18:58:24.293/CEST [main] DEBUG The result of hitOrNot was false
+2011-06-02/18:58:24.293/CEST [main] INFO  Round: 4
+2011-06-02/18:58:24.293/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.293/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.293/CEST [main] DEBUG The defenders pilot skill is 10. The attackers pilot skill is 9
+2011-06-02/18:58:24.293/CEST [main] DEBUG Skilldifference between pilots are -1
+2011-06-02/18:58:24.293/CEST [main] DEBUG Hitting probability is 40
+2011-06-02/18:58:24.293/CEST [main] DEBUG The result of hitOrNot was true
+2011-06-02/18:58:24.294/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 60
+2011-06-02/18:58:24.294/CEST [main] DEBUG Lowering hulldamage by 0
+2011-06-02/18:58:24.294/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.294/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.294/CEST [main] DEBUG The defenders pilot skill is 9. The attackers pilot skill is 10
+2011-06-02/18:58:24.294/CEST [main] DEBUG Skilldifference between pilots are 1
+2011-06-02/18:58:24.294/CEST [main] DEBUG Hitting probability is 60
+2011-06-02/18:58:24.294/CEST [main] DEBUG The result of hitOrNot was false
+2011-06-02/18:58:24.294/CEST [main] INFO  Round: 5
+2011-06-02/18:58:24.294/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.294/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.294/CEST [main] DEBUG The defenders pilot skill is 10. The attackers pilot skill is 9
+2011-06-02/18:58:24.295/CEST [main] DEBUG Skilldifference between pilots are -1
+2011-06-02/18:58:24.295/CEST [main] DEBUG Hitting probability is 40
+2011-06-02/18:58:24.295/CEST [main] DEBUG The result of hitOrNot was false
+2011-06-02/18:58:24.295/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.295/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.295/CEST [main] DEBUG The defenders pilot skill is 9. The attackers pilot skill is 10
+2011-06-02/18:58:24.295/CEST [main] DEBUG Skilldifference between pilots are 1
+2011-06-02/18:58:24.295/CEST [main] DEBUG Hitting probability is 60
+2011-06-02/18:58:24.295/CEST [main] DEBUG The result of hitOrNot was true
+2011-06-02/18:58:24.295/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 60
+2011-06-02/18:58:24.295/CEST [main] DEBUG Lowering hulldamage by 0
+2011-06-02/18:58:24.295/CEST [main] INFO  Round: 6
+2011-06-02/18:58:24.295/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.296/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.296/CEST [main] DEBUG The defenders pilot skill is 10. The attackers pilot skill is 9
+2011-06-02/18:58:24.296/CEST [main] DEBUG Skilldifference between pilots are -1
+2011-06-02/18:58:24.296/CEST [main] DEBUG Hitting probability is 40
+2011-06-02/18:58:24.296/CEST [main] DEBUG The result of hitOrNot was true
+2011-06-02/18:58:24.296/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 40
+2011-06-02/18:58:24.296/CEST [main] DEBUG Lowering hulldamage by 0
+2011-06-02/18:58:24.296/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.296/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.296/CEST [main] DEBUG The defenders pilot skill is 9. The attackers pilot skill is 10
+2011-06-02/18:58:24.296/CEST [main] DEBUG Skilldifference between pilots are 1
+2011-06-02/18:58:24.296/CEST [main] DEBUG Hitting probability is 60
+2011-06-02/18:58:24.296/CEST [main] DEBUG The result of hitOrNot was true
+2011-06-02/18:58:24.296/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 40
+2011-06-02/18:58:24.297/CEST [main] DEBUG Lowering hulldamage by 0
+2011-06-02/18:58:24.297/CEST [main] INFO  Round: 7
+2011-06-02/18:58:24.297/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.297/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.297/CEST [main] DEBUG The defenders pilot skill is 10. The attackers pilot skill is 9
+2011-06-02/18:58:24.297/CEST [main] DEBUG Skilldifference between pilots are -1
+2011-06-02/18:58:24.297/CEST [main] DEBUG Hitting probability is 40
+2011-06-02/18:58:24.297/CEST [main] DEBUG The result of hitOrNot was false
+2011-06-02/18:58:24.297/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.297/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.297/CEST [main] DEBUG The defenders pilot skill is 9. The attackers pilot skill is 10
+2011-06-02/18:58:24.297/CEST [main] DEBUG Skilldifference between pilots are 1
+2011-06-02/18:58:24.297/CEST [main] DEBUG Hitting probability is 60
+2011-06-02/18:58:24.298/CEST [main] DEBUG The result of hitOrNot was true
+2011-06-02/18:58:24.298/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 20
+2011-06-02/18:58:24.298/CEST [main] DEBUG Lowering hulldamage by 0
+2011-06-02/18:58:24.298/CEST [main] INFO  Round: 8
+2011-06-02/18:58:24.298/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.298/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.298/CEST [main] DEBUG The defenders pilot skill is 10. The attackers pilot skill is 9
+2011-06-02/18:58:24.298/CEST [main] DEBUG Skilldifference between pilots are -1
+2011-06-02/18:58:24.298/CEST [main] DEBUG Hitting probability is 40
+2011-06-02/18:58:24.298/CEST [main] DEBUG The result of hitOrNot was false
+2011-06-02/18:58:24.298/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.298/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.298/CEST [main] DEBUG The defenders pilot skill is 9. The attackers pilot skill is 10
+2011-06-02/18:58:24.298/CEST [main] DEBUG Skilldifference between pilots are 1
+2011-06-02/18:58:24.299/CEST [main] DEBUG Hitting probability is 60
+2011-06-02/18:58:24.299/CEST [main] DEBUG The result of hitOrNot was true
+2011-06-02/18:58:24.299/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 0
+2011-06-02/18:58:24.299/CEST [main] DEBUG Lowering hulldamage by 20
+2011-06-02/18:58:24.299/CEST [main] INFO  Round: 9
+2011-06-02/18:58:24.299/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.299/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.299/CEST [main] DEBUG The defenders pilot skill is 10. The attackers pilot skill is 9
+2011-06-02/18:58:24.299/CEST [main] DEBUG Skilldifference between pilots are -1
+2011-06-02/18:58:24.299/CEST [main] DEBUG Hitting probability is 40
+2011-06-02/18:58:24.299/CEST [main] DEBUG The result of hitOrNot was false
+2011-06-02/18:58:24.299/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.299/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.300/CEST [main] DEBUG The defenders pilot skill is 9. The attackers pilot skill is 10
+2011-06-02/18:58:24.300/CEST [main] DEBUG Skilldifference between pilots are 1
+2011-06-02/18:58:24.300/CEST [main] DEBUG Hitting probability is 60
+2011-06-02/18:58:24.300/CEST [main] DEBUG The result of hitOrNot was true
+2011-06-02/18:58:24.300/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 0
+2011-06-02/18:58:24.300/CEST [main] DEBUG Lowering hulldamage by 20
+2011-06-02/18:58:24.300/CEST [main] INFO  Round: 10
+2011-06-02/18:58:24.300/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.300/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.300/CEST [main] DEBUG The defenders pilot skill is 10. The attackers pilot skill is 9
+2011-06-02/18:58:24.300/CEST [main] DEBUG Skilldifference between pilots are -1
+2011-06-02/18:58:24.300/CEST [main] DEBUG Hitting probability is 40
+2011-06-02/18:58:24.300/CEST [main] DEBUG The result of hitOrNot was false
+2011-06-02/18:58:24.301/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.301/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.301/CEST [main] DEBUG The defenders pilot skill is 9. The attackers pilot skill is 10
+2011-06-02/18:58:24.301/CEST [main] DEBUG Skilldifference between pilots are 1
+2011-06-02/18:58:24.301/CEST [main] DEBUG Hitting probability is 60
+2011-06-02/18:58:24.301/CEST [main] DEBUG The result of hitOrNot was true
+2011-06-02/18:58:24.301/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 0
+2011-06-02/18:58:24.301/CEST [main] DEBUG Lowering hulldamage by 20
+2011-06-02/18:58:24.301/CEST [main] INFO  Round: 11
+2011-06-02/18:58:24.301/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.301/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.301/CEST [main] DEBUG The defenders pilot skill is 10. The attackers pilot skill is 9
+2011-06-02/18:58:24.302/CEST [main] DEBUG Skilldifference between pilots are -1
+2011-06-02/18:58:24.302/CEST [main] DEBUG Hitting probability is 40
+2011-06-02/18:58:24.302/CEST [main] DEBUG The result of hitOrNot was true
+2011-06-02/18:58:24.302/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 20
+2011-06-02/18:58:24.302/CEST [main] DEBUG Lowering hulldamage by 0
+2011-06-02/18:58:24.302/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.302/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.302/CEST [main] DEBUG The defenders pilot skill is 9. The attackers pilot skill is 10
+2011-06-02/18:58:24.302/CEST [main] DEBUG Skilldifference between pilots are 1
+2011-06-02/18:58:24.302/CEST [main] DEBUG Hitting probability is 60
+2011-06-02/18:58:24.302/CEST [main] DEBUG The result of hitOrNot was true
+2011-06-02/18:58:24.302/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 0
+2011-06-02/18:58:24.302/CEST [main] DEBUG Lowering hulldamage by 20
+2011-06-02/18:58:24.303/CEST [main] INFO  Round: 12
+2011-06-02/18:58:24.303/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.303/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.303/CEST [main] DEBUG The defenders pilot skill is 10. The attackers pilot skill is 9
+2011-06-02/18:58:24.303/CEST [main] DEBUG Skilldifference between pilots are -1
+2011-06-02/18:58:24.303/CEST [main] DEBUG Hitting probability is 40
+2011-06-02/18:58:24.303/CEST [main] DEBUG The result of hitOrNot was false
+2011-06-02/18:58:24.303/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.303/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.304/CEST [main] DEBUG The defenders pilot skill is 9. The attackers pilot skill is 10
+2011-06-02/18:58:24.304/CEST [main] DEBUG Skilldifference between pilots are 1
+2011-06-02/18:58:24.304/CEST [main] DEBUG Hitting probability is 60
+2011-06-02/18:58:24.304/CEST [main] DEBUG The result of hitOrNot was false
+2011-06-02/18:58:24.304/CEST [main] INFO  Round: 13
+2011-06-02/18:58:24.304/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.304/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.304/CEST [main] DEBUG The defenders pilot skill is 10. The attackers pilot skill is 9
+2011-06-02/18:58:24.304/CEST [main] DEBUG Skilldifference between pilots are -1
+2011-06-02/18:58:24.304/CEST [main] DEBUG Hitting probability is 40
+2011-06-02/18:58:24.304/CEST [main] DEBUG The result of hitOrNot was false
+2011-06-02/18:58:24.304/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.304/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.305/CEST [main] DEBUG The defenders pilot skill is 9. The attackers pilot skill is 10
+2011-06-02/18:58:24.305/CEST [main] DEBUG Skilldifference between pilots are 1
+2011-06-02/18:58:24.305/CEST [main] DEBUG Hitting probability is 60
+2011-06-02/18:58:24.305/CEST [main] DEBUG The result of hitOrNot was false
+2011-06-02/18:58:24.305/CEST [main] INFO  Round: 14
+2011-06-02/18:58:24.305/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.305/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.305/CEST [main] DEBUG The defenders pilot skill is 10. The attackers pilot skill is 9
+2011-06-02/18:58:24.305/CEST [main] DEBUG Skilldifference between pilots are -1
+2011-06-02/18:58:24.305/CEST [main] DEBUG Hitting probability is 40
+2011-06-02/18:58:24.305/CEST [main] DEBUG The result of hitOrNot was true
+2011-06-02/18:58:24.305/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 0
+2011-06-02/18:58:24.306/CEST [main] DEBUG Lowering hulldamage by 20
+2011-06-02/18:58:24.306/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.306/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.306/CEST [main] DEBUG The defenders pilot skill is 9. The attackers pilot skill is 10
+2011-06-02/18:58:24.306/CEST [main] DEBUG Skilldifference between pilots are 1
+2011-06-02/18:58:24.306/CEST [main] DEBUG Hitting probability is 60
+2011-06-02/18:58:24.306/CEST [main] DEBUG The result of hitOrNot was false
+2011-06-02/18:58:24.306/CEST [main] INFO  Round: 15
+2011-06-02/18:58:24.306/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.306/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.306/CEST [main] DEBUG The defenders pilot skill is 10. The attackers pilot skill is 9
+2011-06-02/18:58:24.306/CEST [main] DEBUG Skilldifference between pilots are -1
+2011-06-02/18:58:24.307/CEST [main] DEBUG Hitting probability is 40
+2011-06-02/18:58:24.307/CEST [main] DEBUG The result of hitOrNot was false
+2011-06-02/18:58:24.307/CEST [main] DEBUG Firing weapons at opponent
+2011-06-02/18:58:24.307/CEST [main] DEBUG Firing weapon: LASER
+2011-06-02/18:58:24.307/CEST [main] DEBUG The defenders pilot skill is 9. The attackers pilot skill is 10
+2011-06-02/18:58:24.307/CEST [main] DEBUG Skilldifference between pilots are 1
+2011-06-02/18:58:24.307/CEST [main] DEBUG Hitting probability is 60
+2011-06-02/18:58:24.307/CEST [main] DEBUG The result of hitOrNot was true
+2011-06-02/18:58:24.307/CEST [main] DEBUG Shield getting struck by weapon with strength 20 and remaining shield energy is 0
+2011-06-02/18:58:24.307/CEST [main] DEBUG Lowering hulldamage by 20
+2011-06-02/18:58:24.307/CEST [main] INFO  hawkShip was destroyed
+2011-06-02/18:58:24.315/CEST [main] DEBUG adding shield  with remaining energy: 100
+2011-06-02/18:58:24.318/CEST [main] DEBUG adding shield  with remaining energy: 100
