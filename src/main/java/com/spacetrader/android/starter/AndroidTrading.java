@@ -1,15 +1,12 @@
 package com.spacetrader.android.starter;
 
-import com.spacetrader.android.starter.R.layout;
+import android.app.Activity;
+import android.os.Bundle;
+
 import com.spacetrader.service.shield.ShieldException;
 import com.spacetrader.service.ship.Hawk;
 import com.spacetrader.service.ship.ProbabilityOutOfBoundsException;
 import com.spacetrader.service.ship.exception.NoWeaponsException;
-
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 
 public class AndroidTrading extends Activity {
     /** Called when the activity is first created. */
@@ -32,8 +29,8 @@ public class AndroidTrading extends Activity {
 				
         setContentView(R.layout.main);
 
-		TextView tv = (TextView) findViewById(R.id.my_textView);
+//		TextView tv = (TextView) findViewById(R.id.my_textView);
 		
-		tv.setText("this is set somewhere else");    
+//		tv.setText("this is set somewhere else");    
     }
 }

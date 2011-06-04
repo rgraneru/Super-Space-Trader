@@ -3,9 +3,6 @@ package com.spacetrader.service.ship;
 import java.util.ArrayList;
 import java.util.Random;
 
-//import org.apache.log4j.Logger;
-//import org.apache.log4j.PropertyConfigurator;
-
 import com.spacetrader.service.pilot.Pilot;
 import com.spacetrader.service.shield.Shield;
 import com.spacetrader.service.shield.ShieldException;
@@ -117,7 +114,7 @@ public abstract class Ship {
 	
 	
 
-	protected int getHullStrength() {
+	protected HullStrengthType getHullStrength() {
 		return hullStrength;
 	}
 

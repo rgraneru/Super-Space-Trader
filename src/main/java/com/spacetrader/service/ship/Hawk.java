@@ -5,7 +5,7 @@ import com.spacetrader.service.ship.storagebay.StorageBay;
 public class Hawk extends Ship {
 	private int sizeOfCargoSpace = 30;
 	private int numberOfWeaponPods = 3;
-	private int hullStrength = 5;
+	private HullStrengthType hullStrength = HullStrengthType.LIGHT;
 	
 	public Hawk() {
 		super();
@@ -15,7 +15,7 @@ public class Hawk extends Ship {
 	@Override
 	protected void initialize() {
 		setNumberOfWeaponPods(numberOfWeaponPods);
-		setHullStrength(sizeOfCargoSpace);
+		setHullStrength(hullStrength);
 		setHullRemaining(100);
 		initiateWeaponsArray(); //setting no weapons		
 		StorageBay storageBay = new StorageBay(sizeOfCargoSpace);
